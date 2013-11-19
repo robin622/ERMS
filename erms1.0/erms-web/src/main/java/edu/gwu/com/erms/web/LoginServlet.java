@@ -39,9 +39,9 @@ public class LoginServlet extends HttpServlet {
 		User user=new User();
 		user.setName(loginName);
 		user.setPassword(loginPassword);
-		user.setStatus(Integer.parseInt(identity));
-		boolean b=service.checkUser(user);
-		if(!b){
+		user.setStatus(Double.parseDouble(identity));
+		User b=service.checkUser(user);
+		if(b!=null){
 			request.getSession().setAttribute("user", user);
 			request.getRequestDispatcher("/jsp/home.jsp")
 			.forward(request, response);

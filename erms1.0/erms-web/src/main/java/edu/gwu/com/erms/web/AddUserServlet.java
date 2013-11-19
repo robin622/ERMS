@@ -40,6 +40,7 @@ public class AddUserServlet extends HttpServlet {
 		user.setName(loginName);
 		user.setPassword(loginPassword);
 		user.setEmail(email);
+		user.setStatus(1);
 		boolean b=service.addUser(user);
 		if(b){
 			request.getRequestDispatcher("/ListUserServlet")

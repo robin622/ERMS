@@ -6,6 +6,6 @@ import edu.gwu.com.erms.bean.User;
 
 public interface UserService {
 	public Boolean addUser(User user);
-	public Boolean checkUser(User user);
+	public User checkUser(User user);
 	public List<User> listUsers();
 }

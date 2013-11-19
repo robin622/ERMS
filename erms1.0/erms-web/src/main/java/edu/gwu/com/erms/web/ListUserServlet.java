@@ -35,9 +35,7 @@ public class ListUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<User> list=service.listUsers();
-		if(list.size()>0){
-			
-		}
+		request.setAttribute("userList",list);
 		request.getRequestDispatcher("/jsp/listUser.jsp").forward(request, response);
 	}
 

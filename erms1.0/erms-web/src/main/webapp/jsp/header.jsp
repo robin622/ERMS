@@ -76,7 +76,7 @@
 	  		<div id="showmessage" style="width:50px;float:left;margin-left:200px;margin-top:40px;"></div> 	
 	  		<c:if test="${not empty user}">
     			<div style="float:right;vertical-align:top;padding:8px 4px">Welcome，${user.name}；
-    				Your Identity is：Common User[<a href="${pageContext.request.contextPath}/logout.do" >Logout</a>]<br>
+    				Your Identity is：<c:if test="${user.status eq 0.0}">Admin</c:if><c:if test="${user.status ne 0.0}">Common User</c:if>[<a href="${pageContext.request.contextPath}/logout.do" >Logout</a>]<br>
     				<div style="clear:both;height:10px;"></div>
     		   </div>
     		</c:if>	    

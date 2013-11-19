@@ -27,40 +27,31 @@
 			<tr valign="top">
 				<td width="20%"><jsp:include page="left.jsp" /></td>
 				<td width="80%" height=600 bgcolor=#FFFFFF style="padding:2px;">
-				<div class=daohang>You current position<img src="${pageContext.request.contextPath}/images/icon02.gif" style="margin-top:10px;"/><font>查看管理员信息</font></div>
+				<div class=daohang>You current position<img src="${pageContext.request.contextPath}/images/icon02.gif" style="margin-top:10px;"/><font>Check User List</font></div>
 					
 				
 			
-			<c:if test="${not empty admins }">
+			<c:if test="${not empty userList }">
 				
 		
 				<table class=listFile cellspacing=1>
-				<caption>管理员列表</caption>
+				<caption>User List</caption>
 						
 				<thead>
 					<tr>
 						
-						<th>姓名</th>
-						<th>电话</th>
-						<th>地址</th>
+						<th>name</th>
 						<th>Email</th>
-						<th>权限</th>
-						<th>操作</th>
+						<th>action</th>
 					</tr>
 				</thead>
 				<tbody>	
-				<c:forEach items="${admins}" var="admin" >	
+				<c:forEach items="${userList}" var="user" >	
 					<tr align=center>						
-						<td>${admin.name }</td>
-						<td>${admin.phone }</td>
-						<td>${admin.add }</td>
-						<td >${admin.email }</td>
-						<c:if test="${admin.privilege eq 'super'}"><c:set var="privilege" value="超级管理员"/></c:if>
-						<c:if test="${admin.privilege eq 'finance'}"><c:set var="privilege" value="资费管理员"/></c:if>
-						<td >${privilege }</td>
-						<td><a href="${pageContext.request.contextPath}/admin/toModifyAdmin.do?id=${admin.id}">修改 </a> 
-						| <a href="${pageContext.request.contextPath}/admin/removeAdmin.do?id=${admin.id}">删除 </a>
-						
+						<td>${user.name }</td>
+						<td >${user.email }</td>
+						<td><a href="${pageContext.request.contextPath}/admin/toModifyAdmin.do?id=${admin.id}">modify</a> 
+						| <a href="${pageContext.request.contextPath}/admin/removeAdmin.do?id=${admin.id}">remove</a>
 						</td>
 					</tr>
 				</c:forEach>
