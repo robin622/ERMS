@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 		user.setStatus(Double.parseDouble(identity));
 		User b=service.checkUser(user);
 		if(b!=null){
-			request.getSession().setAttribute("user", user);
+			request.getSession().setAttribute("user", b);
 			request.getRequestDispatcher("/jsp/home.jsp")
 			.forward(request, response);
 		}else{

@@ -6,7 +6,8 @@ import edu.gwu.com.erms.bean.Request;
 import edu.gwu.com.erms.bean.User;
 
 public interface RequestDAO {
-	public boolean insertRequest(Request request);
+	public Request insertRequest(Request request);
 	public List<Request> listRequests();
 	public boolean deleteRequest(String requestId);
+	public List<Request> listRequestsByCondition(String condition, String value);
 }

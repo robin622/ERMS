@@ -79,9 +79,9 @@
 							<td class="option_td" >
 								<table width="200" cellspacing=8 cellpadding=4 class=listItem>
 									<tr><td>
-									<li ><a href="${pageContext.request.contextPath}/listRequest.do">Request(s) send to me</a></li>
-									<li ><a href="${pageContext.request.contextPath}/listRequest.do">My created request(s)</a></li>
-									<li ><a href="${pageContext.request.contextPath}/listRequest.do">Other request(s)</a></li>
+									<li ><a href="${pageContext.request.contextPath}/ListRequestServlet?who=tome">Request(s) send to me</a></li>
+									<li ><a href="${pageContext.request.contextPath}/ListRequestServlet?who=fromme">My created request(s)</a></li>
+									<li ><a href="${pageContext.request.contextPath}/ListRequestServlet?who=others">Other request(s)</a></li>
 									<li ><a href="${pageContext.request.contextPath}/AddRequestServlet?operation=init">Add a new request</a></li>
 								</td></tr></table>
 							</td>

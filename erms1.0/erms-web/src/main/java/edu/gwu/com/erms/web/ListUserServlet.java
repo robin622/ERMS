@@ -51,7 +51,6 @@ public class ListUserServlet extends HttpServlet {
 		            JSONObject json = new JSONObject();
 		            try {
 						json.put("userEmail", u.getEmail());
-						json.put("userId", u.get_id());
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}

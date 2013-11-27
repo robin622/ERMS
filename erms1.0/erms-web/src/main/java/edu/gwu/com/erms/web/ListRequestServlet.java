@@ -40,7 +40,18 @@ public class ListRequestServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Request> list=service.listRequests();
+		List<Request> list= null;
+		User user=(User) request.getSession().getAttribute("user");
+		String who=request.getParameter("who");
+		if("tome".equalsIgnoreCase(who)){
+			list=service.listRequestsByCondition("owner",user.getEmail());
+		}else if("fromme".equalsIgnoreCase(who)){
+			list=service.listRequestsByCondition("creator",user.getName());
+		}else if("others".equalsIgnoreCase(who)){
+			
+		}else{
+			list=service.listRequests();
+		}
 		request.setAttribute("requestList",list);
 		request.getRequestDispatcher("/jsp/listRequest.jsp").forward(request, response);
 	}

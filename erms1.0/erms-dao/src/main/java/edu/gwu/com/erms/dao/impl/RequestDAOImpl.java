@@ -29,7 +29,7 @@ public class RequestDAOImpl implements RequestDAO{
 		connection = Connection.getInstance();
 	}
 	
-	public boolean insertRequest(Request request){
+	public Request insertRequest(Request request){
 		DBCollection table=getTable();
 		BasicDBObject document = new BasicDBObject();
 		document.put("name", request.getName());
@@ -43,9 +43,23 @@ public class RequestDAOImpl implements RequestDAO{
 		table.insert(document);
 		DBCursor cur=table.find(document);
 		while(cur.hasNext()){
-			return true;
+			DBObject obj=cur.next();
+			return (Request) Util.converter(obj,Request.class);
 		}
-		return false;
+		return null;
+	}
+	
+	public List<Request> listRequestsByCondition(String condition, String value) {
+		List<Request> requests=new ArrayList<Request>();
+		DBCollection table=getTable();
+		DBObject query=new QueryBuilder().put(condition).is(value).get();
+		DBCursor cursor=table.find(query);
+		while(cursor.hasNext()){
+			DBObject dbo=cursor.next();
+			Request request=(Request)Util.converter(dbo,Request.class);
+			requests.add(request);
+		}
+		return requests;
 	}
 	
 	public List<Request> listRequests() {
@@ -56,15 +70,15 @@ public class RequestDAOImpl implements RequestDAO{
 		while(cursor.hasNext()){
 			DBObject dbo=cursor.next();
 			Request request=(Request)Util.converter(dbo,Request.class);
-			//invoke user to get true name
-			DBCollection user=connection.getConnection().getCollection("user");
-			BasicDBObject document =new BasicDBObject("_id",new ObjectId(request.getOwner()));
-			DBCursor cur=user.find(document);
-			while(cur.hasNext()){
-				DBObject udbo=cur.next();
-				User userEntity=(User)Util.converter(udbo,User.class);
-				request.setOwner(userEntity.getName());
-			}
+//			//invoke user to get true name
+//			DBCollection user=connection.getConnection().getCollection("user");
+//			BasicDBObject document =new BasicDBObject("_id",new ObjectId(request.getOwner()));
+//			DBCursor cur=user.find(document);
+//			while(cur.hasNext()){
+//				DBObject udbo=cur.next();
+//				User userEntity=(User)Util.converter(udbo,User.class);
+//				request.setOwner(userEntity.getName());
+//			}
 			requests.add(request);
 		}
 		return requests;

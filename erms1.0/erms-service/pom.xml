@@ -13,7 +13,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>edu.gwu.com.erms</groupId>
-			<artifactId>erms-util</artifactId>
+			<artifactId>erms-email</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>

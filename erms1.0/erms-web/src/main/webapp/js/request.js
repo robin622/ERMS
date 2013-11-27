@@ -22,7 +22,7 @@ window.request = {
 			dataType:'json',
 			success: function(rtnData) {
 				$.each(rtnData,function(index,item){
-					$("#request_selectPro").append("<option value='" + item.userId + "'>"+ item.userEmail +"</option>");
+					$("#request_selectPro").append("<option value='" + item.userEmail + "'>"+ item.userEmail +"</option>");
 				});
 			}
 		});

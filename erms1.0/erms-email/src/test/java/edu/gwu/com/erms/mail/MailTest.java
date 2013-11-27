@@ -19,8 +19,8 @@ public class MailTest {
     @Test
     public void testSendMail() {
         try {
-            Mail.sendMail("localhost", "wezhao@gwmail.gwu.edu", "wezhao", 
-                    "wezhao@gwmail.gwu.edu", "", "Send Mail Test", "This is a test mail! Please ignore!");
+            Mail.sendMail("192.168.56.1", "wezhao@gwu.edu", "wezhao", 
+                    "xiafang@gwu.edu", "", "Send Mail Test", "This is a test mail! Please ignore!");
         } catch (Exception e) {
             e.printStackTrace();
         }

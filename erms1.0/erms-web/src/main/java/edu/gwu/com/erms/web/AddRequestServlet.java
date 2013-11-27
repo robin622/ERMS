@@ -6,7 +6,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.jboss.logging.Logger;
-
 import edu.gwu.com.erms.DateUtil;
 import edu.gwu.com.erms.StringUtil;
 import edu.gwu.com.erms.Util;
@@ -24,6 +21,7 @@ import edu.gwu.com.erms.bean.Request;
 import edu.gwu.com.erms.bean.User;
 import edu.gwu.com.erms.service.RequestService;
 import edu.gwu.com.erms.service.UserService;
+import edu.gwu.com.erms.service.mail.ERMSSendMail;
 
 /**
  * Servlet implementation class LoginServlet
@@ -36,6 +34,8 @@ public class AddRequestServlet extends HttpServlet {
 	private RequestService service;
 	@Inject
 	private UserService uservice;
+	@Inject
+	private ERMSSendMail mailer;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -91,8 +91,11 @@ public class AddRequestServlet extends HttpServlet {
 				brequest.setIsPublic(0);
 			}
 			brequest.setForward(forward);
-			boolean b = service.addRequest(brequest);
-			if (b) {
+			Request reRequest = service.addRequest(brequest);
+			if (reRequest!=null) {
+				//send mail
+				User user=(User) request.getSession().getAttribute("user");
+				mailer.sendEmail(reRequest,user,"add");
 				request.getRequestDispatcher("/ListRequestServlet").forward(
 						request, response);
 			} else {

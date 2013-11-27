@@ -7,6 +7,9 @@
         <dependent-module archiveName="erms-service-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/erms-service/erms-service">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="erms-email-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/erms-email/erms-email">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="erms-util-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/erms-util/erms-util">
             <dependency-type>uses</dependency-type>
         </dependent-module>

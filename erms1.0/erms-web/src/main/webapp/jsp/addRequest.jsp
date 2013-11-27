@@ -55,7 +55,7 @@
 												<select name="list1" multiple size=8
 													ondblclick="moveOption(1,document.formx.list1, document.formx.list2)">
 													<c:forEach var="user" items="${users}">
-																<option value="${user._id }">
+																<option value="${user.email}">
 																	${user.email}
 																</option>
 													</c:forEach>
