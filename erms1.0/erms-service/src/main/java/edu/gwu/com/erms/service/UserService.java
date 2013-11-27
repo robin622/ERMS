@@ -8,4 +8,5 @@ public interface UserService {
 	public Boolean addUser(User user);
 	public User checkUser(User user);
 	public List<User> listUsers();
+	public boolean deleteUser(String userId);
 }

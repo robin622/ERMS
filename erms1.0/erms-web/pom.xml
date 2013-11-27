@@ -32,6 +32,11 @@
 			<artifactId>jboss-servlet-api_3.0_spec</artifactId>
 			<version>1.0.0.Beta2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20090211</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>erms-web</finalName>

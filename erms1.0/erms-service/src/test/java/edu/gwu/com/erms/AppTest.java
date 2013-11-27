@@ -1,5 +1,6 @@
 package edu.gwu.com.erms;
 
+import edu.gwu.com.erms.AppTest;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;

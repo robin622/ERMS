@@ -28,7 +28,7 @@
 		 <table class=leftpart cellspacing=0 cellpadding=0 nowrap>
 		 	<tr valign="top">
 				<td height=20>							
-					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- 管理员管理 -->						
+					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- User Management -->						
 						<tr bgcolor=#FFFFFF>				
 							<td>	
 								<a href=# onclick="show_switch(1)" style="TEXT-DECORATION:none;">
@@ -48,7 +48,7 @@
 								<table width="200" cellspacing=8 cellpadding=4 class=listItem>
 									<tr><td>
 									<li ><a href="${pageContext.request.contextPath}/ListUserServlet">User List</a></li>
-									<li ><a href="${pageContext.request.contextPath}/jsp/addUser.jsp">Add User</a></li>
+									<li ><a href="${pageContext.request.contextPath}/jsp/addUser.jsp">Add a User</a></li>
 								</td></tr></table>
 							</td>
 						</tr>													
@@ -60,14 +60,14 @@
 			</tr>	
 			<tr valign="top">
 				<td height=20>							
-					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- 渠道专员管理 -->						
+					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- Request Management -->						
 						<tr bgcolor=#FFFFFF>				
 							<td>	
 								<a href=# onclick="show_switch(2)" style="TEXT-DECORATION:none;">
 									<table width="200" cellspacing=0 cellpadding=0 class=left_class>
 										<tr>
 											<td nowrap class=leftTitle>
-											<img src="${pageContext.request.contextPath}/images/channelmanager.gif" class=title_dec />&nbsp;渠道专员管理</td>											
+											<img src="${pageContext.request.contextPath}/images/requestmanager.gif" class=title_dec />&nbsp;Request Management</td>											
 											<td width=28><img id="img2" src="${pageContext.request.contextPath}/images/line_03.gif" border=0/></td>
 
 										</tr>
@@ -79,8 +79,10 @@
 							<td class="option_td" >
 								<table width="200" cellspacing=8 cellpadding=4 class=listItem>
 									<tr><td>
-									<li ><a href="${pageContext.request.contextPath}/admin/listCommissioners.do">渠道专员列表</a></li>
-									<li ><a href="${pageContext.request.contextPath}/admin/addCommissioner.jsp">添加渠道专员</a></li>
+									<li ><a href="${pageContext.request.contextPath}/listRequest.do">Request(s) send to me</a></li>
+									<li ><a href="${pageContext.request.contextPath}/listRequest.do">My created request(s)</a></li>
+									<li ><a href="${pageContext.request.contextPath}/listRequest.do">Other request(s)</a></li>
+									<li ><a href="${pageContext.request.contextPath}/AddRequestServlet?operation=init">Add a new request</a></li>
 								</td></tr></table>
 							</td>
 						</tr>													
@@ -92,14 +94,14 @@
 			</tr>	
 			<tr valign="top">
 				<td height=20>							
-					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- 渠道专员管理 -->						
+					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- statistics -->						
 						<tr bgcolor=#FFFFFF>				
 							<td>	
 								<a href=# onclick="show_switch(3)" style="TEXT-DECORATION:none;">
 									<table width="200" cellspacing=0 cellpadding=0 class=left_class>
 										<tr>
 											<td nowrap class=leftTitle>
-											<img src="${pageContext.request.contextPath}/images/channelmanager.gif" class=title_dec />&nbsp;市场人员管理</td>											
+											<img src="${pageContext.request.contextPath}/images/statistics.gif" class=title_dec />&nbsp;Statistics</td>											
 											<td width=28><img id="img3" src="${pageContext.request.contextPath}/images/line_03.gif" border=0/></td>
 										</tr>
 									</table>
@@ -110,8 +112,8 @@
 							<td class="option_td" >
 								<table width="200" cellspacing=8 cellpadding=4 class=listItem>
 									<tr><td>
-									<li ><a href="${pageContext.request.contextPath}/admin/listMarketers.do">市场人员列表</a></li>
-									<li ><a href="${pageContext.request.contextPath}/admin/addMarketer.jsp">添加市场人员</a></li>
+									<li ><a href="${pageContext.request.contextPath}/admin/listMarketers.do">1</a></li>
+									<li ><a href="${pageContext.request.contextPath}/admin/addMarketer.jsp">2</a></li>
 								</td></tr></table>
 							</td>
 						</tr>													
@@ -123,214 +125,14 @@
 			</tr>							
 			<tr valign="top">
 				<td height=20 >							
-					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- 代理商管理 -->						
-						<tr bgcolor=#FFFFFF>
-							<td>	
-								<a href=# onclick="show_switch(4)" style="TEXT-DECORATION:none;">
-									<table width="200" cellspacing=0 cellpadding=0  class=left_class>
-										<tr>
-											<td nowrap class=leftTitle>
-											<img src="${pageContext.request.contextPath}/images/agentmanager.gif" class=title_dec />&nbsp;代理商管理</td>											
-											<td width=28><img id="img4"  src="${pageContext.request.contextPath}/images/line_03.gif" border=0/></td>
-										</tr>
-									</table>
-								</a>
-							</td>
-						</tr>
-						<tr id=sec4>				<!-- 可隐藏项 -->
-							<td class="option_td" >	
-								<table width="200" cellspacing=8 cellpadding=4 class=listItem>
-								<tr><td>
-									<li ><a href="${pageContext.request.contextPath}/admin/listAgents.do">代理商列表</a></li>
-									<li ><a href="${pageContext.request.contextPath}/admin/toAddAgent.do">添加代理商</a></li>
-									<li><a href="${pageContext.request.contextPath}/admin/listAgentTypes.do">代理商类型</a></li>															
-								</td></tr></table>
-							</td>
-						</tr>													
-					</table>
-				</td>				
-			</tr>
-				<tr>
-					<td height=10></td>
-				</tr>
-				<tr valign="top">
-				<td height=20 >							
-					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- 用户管理 -->						
-						<tr bgcolor=#FFFFFF>				
-							<td>	
-								<a href=# onclick="show_switch(5)" style="TEXT-DECORATION:none;">
-									<table width="200" cellspacing=0 cellpadding=0 class=left_class>
-										<tr>
-											<td nowrap class=leftTitle>
-											<img src="${pageContext.request.contextPath}/images/usermanager.gif" class=title_dec />&nbsp;用户管理</td>											
-											<td width=28><img id="img5" src="${pageContext.request.contextPath}/images/line_03.gif" border=0/></td>
-										</tr>
-									</table>
-								</a>
-							</td>
-						</tr>
-						<tr  id=sec5>				<!-- 可隐藏项 -->
-							<td class="option_td">	
-								<table width="200" cellspacing=8 cellpadding=4 class=listItem>
-								<tr><td>
-									<li ><a href="${pageContext.request.contextPath}/admin/listUsers.do">用户列表</a></li>
-									<li ><a href="${pageContext.request.contextPath}/admin/listPastUsers.do">过期用户列表</a></li>
-									<li ><a href="${pageContext.request.contextPath}/admin/to_add_user.do">添加用户</a></li>
-									<li ><a href="${pageContext.request.contextPath}/admin/list_tmp_users.do">试注册用户</a></li>
-									<li ><a href="${pageContext.request.contextPath}/admin/manage_ind_class.do">用户行业编辑</a></li>
-									<li ><a href="${pageContext.request.contextPath}/admin/searchUsers.jsp">域名绑定</a></li>
-								</td></tr></table>
-							</td>
-						</tr>													
-					</table>
-				</td>				
-			</tr>
-				<tr>
-					<td height=10></td>
-				</tr>
-				<tr valign="top">
-				<td height=20>							
-					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- 产品管理 -->						
-						<tr bgcolor=#FFFFFF>				
-							<td>	
-								<a href=# onclick="show_switch(6)" style="TEXT-DECORATION:none;">
-									<table width="200" cellspacing=0 cellpadding=0 class=left_class>
-										<tr>
-											<td nowrap class=leftTitle>
-											<img src="${pageContext.request.contextPath}/images/productmanager.gif" class=title_dec />&nbsp;产品管理</td>											
-											<td width=28><img id="img6"  src="${pageContext.request.contextPath}/images/line_03.gif" border=0/></td>
-
-										</tr>
-									</table>
-								</a>
-							</td>
-						</tr>
-						<tr  bgcolor=#FFFFFF id=sec6>				<!-- 可隐藏项 -->
-							<td class="option_td" >
-								<table width="200" cellspacing=8 cellpadding=4 class=listItem>
-									<tr><td>
-									<li ><a href="${pageContext.request.contextPath}/admin/listUserTypes.do">产品类型</a></li>									
-									<li ><a href="${pageContext.request.contextPath}/admin/listSkins.do">皮肤管理</a></li>
-									<li ><a href="${pageContext.request.contextPath}/admin/to_play_config.do">公播设置</a></li>
-									<li ><a href="${pageContext.request.contextPath}/admin/listAllNews.do">新消息设置</a></li>
-									<li ><a href="${pageContext.request.contextPath}/admin/showAllSuggestion.do">意见建议</a></li>
-								</td></tr></table>
-							</td>
-						</tr>													
-					</table>
-				</td>				
-			</tr>
-			<tr>
-				<td height=10></td>
-			</tr>
-			<tr valign="top">
-				<td height=20>							
-					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- 产品促销管理 -->						
-						<tr bgcolor=#FFFFFF>				
-							<td>	
-								<a href=# onclick="show_switch(7)" style="TEXT-DECORATION:none;">
-									<table width="200" cellspacing=0 cellpadding=0 class=left_class>
-										<tr>
-											<td nowrap class=leftTitle>
-											<img src="${pageContext.request.contextPath}/images/channelmanager.gif" class=title_dec />&nbsp;产品促销管理</td>											
-											<td width=28><img id="img7" src="${pageContext.request.contextPath}/images/line_03.gif" border=0/></td>
-
-										</tr>
-									</table>
-								</a>
-							</td>
-						</tr>
-						<tr id=sec7  bgcolor=#FFFFFF>				<!-- 可隐藏项 -->
-							<td class="option_td" >
-								<table width="200" cellspacing=8 cellpadding=4 class=listItem>
-									<tr><td>
-									<li ><a href="${pageContext.request.contextPath}/admin/preaddonsale.do">添加产品促销</a></li>
-									<li ><a href="${pageContext.request.contextPath}/admin/showOnsale.do">产品促销记录</a></li>
-								</td></tr></table>
-							</td>
-						</tr>													
-					</table>
-				</td>				
-			</tr>	
-			<tr>
-				<td height=10></td>
-			</tr>
-			<tr valign="top">
-				<td height=20>							
-					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- 产品促销管理 -->						
-						<tr bgcolor=#FFFFFF>				
-							<td>	
-								<a href=# onclick="show_switch(8)" style="TEXT-DECORATION:none;">
-									<table width="200" cellspacing=0 cellpadding=0 class=left_class>
-										<tr>
-											<td nowrap class=leftTitle>
-											<img src="${pageContext.request.contextPath}/images/channelmanager.gif" class=title_dec />&nbsp;服务器管理</td>											
-											<td width=28><img id="img8" src="${pageContext.request.contextPath}/images/line_03.gif" border=0/></td>
-
-										</tr>
-									</table>
-								</a>
-							</td>
-						</tr>
-						<tr id=sec8  bgcolor=#FFFFFF>				<!-- 可隐藏项 -->
-							<td class="option_td" >
-								<table width="200" cellspacing=8 cellpadding=4 class=listItem>
-									<tr><td>
-									<li ><a href="${pageContext.request.contextPath}/admin/addserver.do">添加服务器</a></li>
-									<li ><a href="${pageContext.request.contextPath}/admin/serverlist.do">服务器列表</a></li>
-									<li ><a href="${pageContext.request.contextPath}/admin/fieldlist.jsp">域列表</a></li>
-								</td></tr></table>
-							</td>
-						</tr>													
-					</table>
-				</td>				
-			</tr>
-			<tr>
-				<td height=10></td>
-			</tr>
-			<tr valign="top">
-				<td height=20>							
-					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- 用户卡管理 -->						
-						<tr bgcolor=#FFFFFF>				
-							<td>	
-								<a href=# onclick="show_switch(9)" style="TEXT-DECORATION:none;">
-									<table width="200" cellspacing=0 cellpadding=0 class=left_class>
-										<tr>
-											<td nowrap class=leftTitle>
-											<img src="${pageContext.request.contextPath}/images/channelmanager.gif" class=title_dec />&nbsp;用户卡管理</td>											
-											<td width=28><img id="img9" src="${pageContext.request.contextPath}/images/line_03.gif" border=0/></td>
-
-										</tr>
-									</table>
-								</a>
-							</td>
-						</tr>
-						<tr id=sec9  bgcolor=#FFFFFF>				<!-- 可隐藏项 -->
-							<td class="option_td" >
-								<table width="200" cellspacing=8 cellpadding=4 class=listItem>
-									<tr><td>
-									<li ><a href="${pageContext.request.contextPath}/admin/addusercard.do">添加用户卡</a></li>
-									<li ><a href="${pageContext.request.contextPath}/admin/addSingleUserCard.do">手动添加单用户</a></li>
-									<li ><a href="${pageContext.request.contextPath}/admin/usercardlist.do">用户卡列表</a></li>
-								</td></tr></table>
-							</td>
-						</tr>													
-					</table>
-				</td>				
-			</tr>		
-			<tr>
-				<td height=10></td>
-			</tr>
-			<tr valign="top">
-				<td height=20 >							
-					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- 其他管理 -->						
+					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- others -->						
 						<tr bgcolor=#FFFFFF>			
 							<td>	
 								<a href=# onclick="show_switch(10)" style="TEXT-DECORATION:none;">
 									<table width="200" cellspacing=0 cellpadding=0 class=left_class>
 										<tr>
 											<td nowrap class=leftTitle>
-											<img src="${pageContext.request.contextPath}/images/others.gif" class=title_dec />&nbsp;其他</td>											
+											<img src="${pageContext.request.contextPath}/images/others.gif" class=title_dec />&nbsp;Others</td>											
 											<td width=28><img id="img10" src="${pageContext.request.contextPath}/images/line_03.gif" border=0/></td>
 										</tr>
 									</table>
@@ -342,7 +144,7 @@
 								<table width="200" cellspacing=8 cellpadding=4 class=listItem>
 								<tr><td>
 	
-									<li ><a href="${pageContext.request.contextPath}/logout.do">退出系统</a></li>								
+									<li ><a href="${pageContext.request.contextPath}/logout.do">Exit</a></li>								
 								</td></tr></table>
 							</td>
 						</tr>													

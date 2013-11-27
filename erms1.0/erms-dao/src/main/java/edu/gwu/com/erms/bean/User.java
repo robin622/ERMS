@@ -2,12 +2,14 @@ package edu.gwu.com.erms.bean;
 
 import java.util.Date;
 
+import org.bson.types.ObjectId;
+
 public class User {
-	private String id;
+	private ObjectId _id;
 	private String name;
 	private String password;
 	private String email;
-	private Date createDatetime;
+	private Date date;
 	private double status;
 	public double getStatus() {
 		return status;
@@ -24,11 +26,11 @@ public class User {
 	public String getPassword() {
 		return password;
 	}
-	public String getId() {
-		return id;
+	public ObjectId get_id() {
+		return _id;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void set_id(ObjectId _id) {
+		this._id = _id;
 	}
 	public void setPassword(String password) {
 		this.password = password;
@@ -36,11 +38,11 @@ public class User {
 	public String getEmail() {
 		return email;
 	}
-	public Date getCreateDatetime() {
-		return createDatetime;
+	public Date getDate() {
+		return date;
 	}
-	public void setCreateDatetime(Date createDatetime) {
-		this.createDatetime = createDatetime;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	public void setEmail(String email) {
 		this.email = email;

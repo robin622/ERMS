@@ -1,13 +1,21 @@
 package edu.gwu.com.erms.dao.impl;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.bson.types.ObjectId;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.QueryBuilder;
+
+import edu.gwu.com.erms.DateUtil;
 import edu.gwu.com.erms.Util;
 import edu.gwu.com.erms.bean.User;
 import edu.gwu.com.erms.dao.Connection;
@@ -29,7 +37,7 @@ public class UserDAOImpl implements UserDAO{
 		document.put("name", user.getName());
 		document.put("password", user.getPassword());
 		document.put("email", user.getEmail());
-		document.put("date",new Date());
+		document.put("date",DateUtil.getLocalUTCTime());
 		document.put("status",user.getStatus());
 		table.insert(document);
 		DBCursor cur=table.find(document);
@@ -71,6 +79,17 @@ public class UserDAOImpl implements UserDAO{
 	public boolean deleteAllUser(){
 		DBCollection table=getTable();
 		table.drop();
+		return true;
+	}
+	//delete a user by user's id
+	public boolean deleteUser(String userId) {
+		DBCollection table=getTable();
+		BasicDBObject document =new BasicDBObject("_id",new ObjectId(userId));
+		table.remove(document);
+		DBCursor cur=table.find(document);
+		while(cur.hasNext()){
+			return false;
+		}
 		return true;
 	}
 	

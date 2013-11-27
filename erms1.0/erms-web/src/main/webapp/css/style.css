@@ -1,4 +1,4 @@
-*{margin:0px auto;padding:0px;FONT-FAMILY:"宋体";}
+*{margin:0px auto;padding:0px;}
 body{FONT-SIZE: 12px;color:#333333;background-color:#FFFFFF;text-align:center;}
 h1{color:#FF0000;FONT-SIZE: 12px;text-align:center;}
 textarea,input,select{font-size:12px;}
@@ -73,7 +73,7 @@ th,td{
 	background:url("../images/title-bg.gif") repeat-x;
 	text-align:left;
 }
-.daohang{	/* ����λ�õ��� */
+.daohang{	/* 锟斤拷锟斤拷位锟矫碉拷锟斤拷 */
 	width:280px;
 	margin-left:10px;
 	line-height:25px;
@@ -184,10 +184,10 @@ h1
 #videoStyleTable td{
 	height:40px;
 }
-#videoConfig{      /* ������ƵЧ������Ƶ��Ϣ��ʾ */
+#videoConfig{      /* 锟斤拷锟斤拷锟斤拷频效锟斤拷锟斤拷锟斤拷频锟斤拷息锟斤拷示 */
 	color:#333333;line-height:200%;	
 }
-#logoConfig{       /* ������ƵЧ����Logo��Ϣ��ʾ */
+#logoConfig{       /* 锟斤拷锟斤拷锟斤拷频效锟斤拷锟斤拷Logo锟斤拷息锟斤拷示 */
 	color:#333333;line-height:200%;	
 }
 .bt
@@ -285,14 +285,14 @@ a:hover {
 	font-size:12px;font-weight:bold;width:620;	
 }
 caption{
-	font-family :"黑体";
+	font-family :"榛戜綋";
 	font-size:14px;
 	font-weight:bold;
 	margin:1em 0;
 }
 .cap
 {
-	font-family :"黑体";
+	font-family :"榛戜綋";
 	font-size:14px;
 	font-weight:bold;
 	margin:1em 0;
@@ -348,7 +348,7 @@ col{
 .addFile{width:550px;line-height:22px;background-color:#EEE;}
 .addFile tr{background-color:#F0F7FF;}
 .addFile th{text-align:left;padding:2px 8px;}
-.addFile td{background-color:#FFFFFF;padding:4px;width:150px;}
+.addFile td{background-color:#FFFFFF;padding:4px;width:400px;}
 .addFile2 select{width:120px;}
 .addFile2 tr{background-color:#F0F7FF;}
 .addFile2 th{text-align:center;padding:2px 8px;}
@@ -357,8 +357,8 @@ col{
 .addFilesmall tr{background-color:#F0F7FF;width:395px;}
 .addFilesmall th{text-align:left;padding:2px 8px;height:22px;}
 .addFilesmall td{padding:4px;}
-/*配置的设置*/
-/*详细信息的信息框*/
+
+
 .main {width:99%;margin:10px auto;border:1px solid #C8D5DF;}
 .main_title {line-height:24px;height:24px;overflow:hidden;background-color:#F0F7FF;
 	background:url(../images/lian.gif) repeat-x 0 0;}
@@ -429,7 +429,7 @@ col{
 	text-align:center;
 	width:100%;
 }
-/*小说明和提示*/
+/*灏忚鏄庡拰鎻愮ず*/
 .tishi
 {
 	float:left;margin-left:50px;
