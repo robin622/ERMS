@@ -1,4 +1,4 @@
-package edu.gwu.com.erms.web;
+package edu.gwu.com.erms.web.user;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,24 +15,22 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import edu.gwu.com.erms.bean.Request;
 import edu.gwu.com.erms.bean.User;
-import edu.gwu.com.erms.service.RequestService;
 import edu.gwu.com.erms.service.UserService;
 
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/ListRequestServlet")
-public class ListRequestServlet extends HttpServlet {
+@WebServlet("/ListUserServlet")
+public class ListUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Inject
-	private RequestService service;
+	private UserService service;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListRequestServlet() {
+    public ListUserServlet() {
         super();
     }
 
@@ -40,20 +38,27 @@ public class ListRequestServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Request> list= null;
-		User user=(User) request.getSession().getAttribute("user");
-		String who=request.getParameter("who");
-		if("tome".equalsIgnoreCase(who)){
-			list=service.listRequestsByCondition("owner",user.getEmail());
-		}else if("fromme".equalsIgnoreCase(who)){
-			list=service.listRequestsByCondition("creator",user.getName());
-		}else if("others".equalsIgnoreCase(who)){
-			
-		}else{
-			list=service.listRequests();
+		String operation=request.getParameter("operation");
+		List<User> list=service.listUsers();
+		if(operation==null){
+			request.setAttribute("userList",list);
+			request.getRequestDispatcher("/jsp/listUser.jsp").forward(request, response);
+		}else if("getAllOwners".equalsIgnoreCase(operation)){
+			//return json data from ajax
+			JSONArray array = new JSONArray();
+			if(list != null && list.size() > 0){
+		        for(User u : list){
+		            JSONObject json = new JSONObject();
+		            try {
+						json.put("userEmail", u.getEmail());
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+		            array.put(json);
+		        }
+		    }
+			response.getWriter().print(array.toString());
 		}
-		request.setAttribute("requestList",list);
-		request.getRequestDispatcher("/jsp/listRequest.jsp").forward(request, response);
 	}
 
 	/**

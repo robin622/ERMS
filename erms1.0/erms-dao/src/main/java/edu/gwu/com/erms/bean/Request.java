@@ -17,6 +17,13 @@ public class Request {
 	private Date updatetime;
 	private int isPublic;
 	private String forward;
+	private int status;//1 is normal, o is deleted, 2 is in progress 3 is done
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	public ObjectId get_id() {
 		return _id;
 	}

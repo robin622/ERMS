@@ -12,7 +12,7 @@ import edu.gwu.com.erms.service.UserService;
 public class UserServiceImpl implements UserService{
 	@Inject
 	private UserDAO userDAO;
-	public Boolean addUser(User user) {
+	public User addUser(User user) {
 		return userDAO.insertUser(user);
 	}
 	public User checkUser(User user) {

@@ -1,6 +1,7 @@
-package edu.gwu.com.erms.web;
+package edu.gwu.com.erms.web.request;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -10,22 +11,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import edu.gwu.com.erms.bean.Request;
 import edu.gwu.com.erms.bean.User;
+import edu.gwu.com.erms.service.RequestService;
 import edu.gwu.com.erms.service.UserService;
 
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/DeleteUserServlet")
-public class DeleteUserServlet extends HttpServlet {
+@WebServlet("/ListRequestServlet")
+public class ListRequestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Inject
-	private UserService service;
+	private RequestService service;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteUserServlet() {
+    public ListRequestServlet() {
         super();
     }
 
@@ -33,16 +40,21 @@ public class DeleteUserServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId=request.getParameter("userId");
-		boolean b=service.deleteUser(userId);
-		if(b){
-			request.getRequestDispatcher("/ListUserServlet")
-			.forward(request, response);
+		List<Request> list= null;
+		User user=(User) request.getSession().getAttribute("user");
+		String who=request.getParameter("who");
+		if("tome".equalsIgnoreCase(who)){
+			list=service.listRequestsByCondition("owner",user.getEmail());
+		}else if("fromme".equalsIgnoreCase(who)){
+			list=service.listRequestsByCondition("creator",user.getName());
+		}else if("others".equalsIgnoreCase(who)){
+			
 		}else{
-			request.setAttribute("message","Please check your username and password");
-			request.getRequestDispatcher("/addUser.jsp")
-			.forward(request, response);
+			list=service.listRequests();
 		}
+		request.setAttribute("requestList",list);
+		request.setAttribute("who", who);
+		request.getRequestDispatcher("/jsp/listRequest.jsp").forward(request, response);
 	}
 
 	/**

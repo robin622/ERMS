@@ -17,6 +17,7 @@ import com.mongodb.QueryBuilder;
 
 import edu.gwu.com.erms.DateUtil;
 import edu.gwu.com.erms.Util;
+import edu.gwu.com.erms.bean.Request;
 import edu.gwu.com.erms.bean.User;
 import edu.gwu.com.erms.dao.Connection;
 import edu.gwu.com.erms.dao.UserDAO;
@@ -31,8 +32,15 @@ public class UserDAOImpl implements UserDAO{
 		connection = Connection.getInstance();
 	}
 	
-	public boolean insertUser(User user){
+	public User insertUser(User user){
 		DBCollection table=getTable();
+		//email should be unique
+		DBObject query = new QueryBuilder().put("email").is(user.getEmail()).get();
+		DBCursor cur0 = table.find(query);
+		if(cur0.hasNext()){
+			DBObject obj=cur0.next();
+			return (User) Util.converter(obj,User.class);
+		}
 		BasicDBObject document = new BasicDBObject();
 		document.put("name", user.getName());
 		document.put("password", user.getPassword());
@@ -42,9 +50,10 @@ public class UserDAOImpl implements UserDAO{
 		table.insert(document);
 		DBCursor cur=table.find(document);
 		while(cur.hasNext()){
-			return true;
+			DBObject obj=cur.next();
+			return (User) Util.converter(obj,User.class);
 		}
-		return false;
+		return null;
 	}
 	
 	//check whether user exists or not

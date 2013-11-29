@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.gwu.com.erms.bean.User;
 
-@WebFilter(urlPatterns = { "/AddRequestServlet", "/AddUserServlet", "/DeleteUserServlet", "/ListRequestServlet", "/ListUserServlet"})
+@WebFilter(urlPatterns = { "/AddRequestServlet", "/AddUserServlet", "/DeleteUserServlet",
+		"/ListRequestServlet", "/ListUserServlet","/UpdateRequestServlet","/ShowRequestLogServlet"})
 public class SessionFilter implements Filter {
 
     public void init(FilterConfig config) throws ServletException {

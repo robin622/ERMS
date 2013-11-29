@@ -1,4 +1,4 @@
-package edu.gwu.com.erms.web;
+package edu.gwu.com.erms.web.request;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -34,8 +34,6 @@ public class AddRequestServlet extends HttpServlet {
 	private RequestService service;
 	@Inject
 	private UserService uservice;
-	@Inject
-	private ERMSSendMail mailer;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -91,11 +89,9 @@ public class AddRequestServlet extends HttpServlet {
 				brequest.setIsPublic(0);
 			}
 			brequest.setForward(forward);
-			Request reRequest = service.addRequest(brequest);
+			User user=(User) request.getSession().getAttribute("user");
+			Request reRequest = service.addRequest(brequest,user);
 			if (reRequest!=null) {
-				//send mail
-				User user=(User) request.getSession().getAttribute("user");
-				mailer.sendEmail(reRequest,user,"add");
 				request.getRequestDispatcher("/ListRequestServlet").forward(
 						request, response);
 			} else {

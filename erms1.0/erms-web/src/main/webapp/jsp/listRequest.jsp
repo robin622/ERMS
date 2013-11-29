@@ -9,7 +9,40 @@
 			href="${pageContext.request.contextPath}/css/style.css">
 	</head>
 	<script language="javascript" src="${pageContext.request.contextPath}/js/height.js"></script>
+	<script type="text/javascript">
+			function mouseCoords(event){  
+			    if(event.pageX || event.pageY){  
+			        return {x:event.pageX, y:event.pageY};  
+			    }  
+			    return {  
+			        x:event.clientX + document.body.scrollLeft - document.body.clientLeft,  
+			        y:event.clientY + document.documentElement.scrollTop  - document.documentElement.clientTop  
+			    };  
+			}  
+			function Wopen(id,event)
+			{
+				var divst=document.getElementById('updaterequest');
+				var dw=document.getElementById('dw');
+				if(divst.style.display=='none')
+				{			
+					dw.style.position='absolute';
+					arr=mouseCoords(event);
+					dw.style.top=arr.y-50;
+					dw.style.left=arr.x-450;
+
+					divst.style.display='block';
+					divst.src='${pageContext.request.contextPath}/jsp/updateRequest.jsp?rid='+id;
+				}
+				else
+				{
+					divst.style.display='none';
+				}
+			}
+		</script>
 	<body onload = "javascript:updateDisplaySize()">
+	<div id="dw">
+		<iframe id="updaterequest"  src="" width="400px" height="170px" frameborder="0" style="display:none;border:1px solid #448ACF;"scrolling="no"></iframe>
+	</div>
 	<jsp:include page="header.jsp" />
 		<table id="mainTableInThisPage" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" height="60">
 			<tr valign="top">
@@ -39,7 +72,19 @@
 						<td ><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${request.createtime}" /></td>
 						<td ><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${request.endtime}" /></td>
 						<td>
-						<a href="${pageContext.request.contextPath}/DeleteUserServlet?userId=${user._id}" onclick="return confirm('Are you sure to delete the user?');">delete</a>
+						<c:if test="${who eq 'tome'}">
+							<c:if test="${request.status eq 2}">
+								<a href="javascript:void(0);" onclick="Wopen('${request._id}',event);">update</a> 
+							</c:if>
+							<c:if test="${request.status eq 3}">
+								<a href="${pageContext.request.contextPath}/ShowRequestLogServlet?requestId=${request._id}" target="_blank">details</a> 
+							</c:if>
+						</c:if>
+						<c:if test="${who eq 'fromme'}">
+						<a href="${pageContext.request.contextPath}/DeleteRequestServlet?requestId=${request._id}" onclick="return confirm('Are you sure to delete the request?');">delete</a>
+						</c:if>
+						<c:if test="${who eq 'others'}">
+						</c:if>
 						</td>
 					</tr>
 				</c:forEach>

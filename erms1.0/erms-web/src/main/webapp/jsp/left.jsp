@@ -26,6 +26,7 @@
 	</head> 
 	<body class=bgbody>	
 		 <table class=leftpart cellspacing=0 cellpadding=0 nowrap>
+			<c:if test="${user.status eq 0}">
 		 	<tr valign="top">
 				<td height=20>							
 					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- User Management -->						
@@ -57,10 +58,11 @@
 			</tr>
 			<tr>
 				<td height=10></td>
-			</tr>	
+			</tr>
+			</c:if>	
 			<tr valign="top">
 				<td height=20>							
-					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- Request Management -->						
+					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- Request Management -->	
 						<tr bgcolor=#FFFFFF>				
 							<td>	
 								<a href=# onclick="show_switch(2)" style="TEXT-DECORATION:none;">
@@ -89,9 +91,10 @@
 					</table>
 				</td>				
 			</tr>
+			<c:if test="${user.status eq 0}">	
 			<tr>
 				<td height=10></td>
-			</tr>	
+			</tr>
 			<tr valign="top">
 				<td height=20>							
 					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- statistics -->						
@@ -108,21 +111,21 @@
 								</a>
 							</td>
 						</tr>
-						<tr id=sec3  bgcolor=#FFFFFF>				<!-- 可隐藏项 -->
+						<tr id=sec3  bgcolor=#FFFFFF>			
 							<td class="option_td" >
 								<table width="200" cellspacing=8 cellpadding=4 class=listItem>
 									<tr><td>
-									<li ><a href="${pageContext.request.contextPath}/admin/listMarketers.do">1</a></li>
-									<li ><a href="${pageContext.request.contextPath}/admin/addMarketer.jsp">2</a></li>
+									<li ><a href="${pageContext.request.contextPath}/jsp/statistics.jsp">workload</a></li>
 								</td></tr></table>
 							</td>
 						</tr>													
 					</table>
 				</td>				
 			</tr>
+			</c:if>	
 			<tr>
 				<td height=10></td>
-			</tr>							
+			</tr>
 			<tr valign="top">
 				<td height=20 >							
 					<table width="200" cellspacing=1 cellpadding=1 class="opr_Item" border=0 bgcolor=#6281BF><!-- others -->						
@@ -144,7 +147,7 @@
 								<table width="200" cellspacing=8 cellpadding=4 class=listItem>
 								<tr><td>
 	
-									<li ><a href="${pageContext.request.contextPath}/logout.do">Exit</a></li>								
+									<li ><a href="${pageContext.request.contextPath}/LogoutServlet">Exit</a></li>								
 								</td></tr></table>
 							</td>
 						</tr>													

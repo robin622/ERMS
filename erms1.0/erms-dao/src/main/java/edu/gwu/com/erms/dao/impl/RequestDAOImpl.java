@@ -40,6 +40,7 @@ public class RequestDAOImpl implements RequestDAO{
 		document.put("endtime",request.getEndtime());
 		document.put("isPublic",request.getIsPublic());
 		document.put("forward", request.getForward());
+		document.put("status",1);
 		table.insert(document);
 		DBCursor cur=table.find(document);
 		while(cur.hasNext()){
@@ -49,10 +50,10 @@ public class RequestDAOImpl implements RequestDAO{
 		return null;
 	}
 	
-	public List<Request> listRequestsByCondition(String condition, String value) {
+	public List<Request> listRequestsByCondition(String condition, Object value) {
 		List<Request> requests=new ArrayList<Request>();
 		DBCollection table=getTable();
-		DBObject query=new QueryBuilder().put(condition).is(value).get();
+		DBObject query=new QueryBuilder().put("status").notEquals(0).put(condition).is(value).get();
 		DBCursor cursor=table.find(query);
 		while(cursor.hasNext()){
 			DBObject dbo=cursor.next();
@@ -62,10 +63,22 @@ public class RequestDAOImpl implements RequestDAO{
 		return requests;
 	}
 	
+	public Request listRequestById(String id) {
+		Request request=null;
+		DBCollection table=getTable();
+		BasicDBObject document =new BasicDBObject("_id",new ObjectId(id));
+		DBCursor cursor=table.find(document);
+		while(cursor.hasNext()){
+			DBObject dbo=cursor.next();
+			request=(Request)Util.converter(dbo,Request.class);
+		}
+		return request;
+	}
+	
 	public List<Request> listRequests() {
 		List<Request> requests=new ArrayList<Request>();
 		DBCollection table=getTable();
-		DBObject query=new QueryBuilder().get();
+		DBObject query=new QueryBuilder().put("status").notEquals(0).get();
 		DBCursor cursor=table.find(query);
 		while(cursor.hasNext()){
 			DBObject dbo=cursor.next();
@@ -84,16 +97,39 @@ public class RequestDAOImpl implements RequestDAO{
 		return requests;
 	}
 	
-	//delete a user by user's id
+	//delete a user by user's id --> change the status of this request
 	public boolean deleteRequest(String requestId) {
-//		DBCollection table=getTable();
-//		BasicDBObject document =new BasicDBObject("_id",new ObjectId(userId));
-//		table.remove(document);
-//		DBCursor cur=table.find(document);
-//		while(cur.hasNext()){
-//			return false;
-//		}
-//		return true;
+		DBCollection table=getTable();
+		BasicDBObject conditionDocument =new BasicDBObject("_id",new ObjectId(requestId));
+		BasicDBObject updateDocument =new BasicDBObject("$set",new BasicDBObject("status",0));
+		table.update(conditionDocument,updateDocument,false,false);
+		DBCursor cur=table.find(conditionDocument);
+		Request request=null;
+		while(cur.hasNext()){
+			DBObject dbo=cur.next();
+			request=(Request)Util.converter(dbo,Request.class);
+		}
+		if(request==null||request.getStatus()!=0){
+			return false;
+		}
 		return true;
+	}
+	
+	//update status
+	public Request updateRequestStatus(String requestId, int status) {
+		DBCollection table=getTable();
+		BasicDBObject conditionDocument =new BasicDBObject("_id",new ObjectId(requestId));
+		BasicDBObject updateDocument =new BasicDBObject("$set",new BasicDBObject("status",status));
+		table.update(conditionDocument,updateDocument,false,false);
+		DBCursor cur=table.find(conditionDocument);
+		Request request=null;
+		while(cur.hasNext()){
+			DBObject dbo=cur.next();
+			request=(Request)Util.converter(dbo,Request.class);
+		}
+		if(request==null||request.getStatus()!=status){
+			return null;
+		}
+		return request;
 	}
 }

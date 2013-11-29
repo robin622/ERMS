@@ -21,7 +21,7 @@ function moveOption(num, e1, e2) {
 			}
 		}
 		document.formx.utv.value = getvalue(document.formx.list2);
-		alert(document.formx.utv.value);
+		//alert(document.formx.utv.value);
 	} catch (e) {
 	}
 }

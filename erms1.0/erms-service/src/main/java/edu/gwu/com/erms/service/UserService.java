@@ -5,7 +5,7 @@ import java.util.List;
 import edu.gwu.com.erms.bean.User;
 
 public interface UserService {
-	public Boolean addUser(User user);
+	public User addUser(User user);
 	public User checkUser(User user);
 	public List<User> listUsers();
 	public boolean deleteUser(String userId);
