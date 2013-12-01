@@ -5,8 +5,6 @@
 	<head>
 		<title>Request List</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css"
-			href="${pageContext.request.contextPath}/css/style.css">
 	</head>
 	<script language="javascript" src="${pageContext.request.contextPath}/js/height.js"></script>
 	<script type="text/javascript">
@@ -73,7 +71,7 @@
 						<td ><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${request.endtime}" /></td>
 						<td>
 						<c:if test="${who eq 'tome'}">
-							<c:if test="${request.status eq 2}">
+							<c:if test="${request.status eq 2 or request.status eq 1}">
 								<a href="javascript:void(0);" onclick="Wopen('${request._id}',event);">update</a> 
 							</c:if>
 							<c:if test="${request.status eq 3}">

@@ -2,7 +2,9 @@ package edu.gwu.com.erms.dao.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
@@ -56,6 +58,20 @@ public class RequestLogDAOImpl implements RequestLogDAO {
 			logs.add(log);
 		}
 		return logs;
+	}
+
+	public List<Log> listUsersByDay(Date start,Date end) {
+		List<Log> requestIds=new ArrayList<Log>();
+		DBCollection table=getTable();
+		DBObject query=new QueryBuilder().put("createdate").greaterThanEquals(start).lessThan(end).get();
+		DBCursor cursor=table.find(query);
+		while(cursor.hasNext()){
+			DBObject dbo=cursor.next();
+			Log log=(Log)Util.converter(dbo,Log.class);
+			requestIds.add(log);
+		}
+		return requestIds;
+		
 	}
 
 }

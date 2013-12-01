@@ -5,8 +5,10 @@ import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 import com.mongodb.DBObject;
@@ -58,6 +60,67 @@ public class DateUtil
 		cal.setTime(date);
 		cal.add(Calendar.HOUR_OF_DAY, hours);
 		return cal.getTime();
+	}
+	
+	public static Date getTodayTime(){
+		Calendar cal=Calendar.getInstance();
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0); 
+		Date today=cal.getTime();
+		return today;
+	}
+	
+	public static Date getFirstDayofThisWeek(){
+		int mondayPlus=getMondayPlus();
+		GregorianCalendar currentDate=new GregorianCalendar();
+		currentDate.add(GregorianCalendar.DATE, mondayPlus);
+		return currentDate.getTime();
+	}
+	
+	private static int getMondayPlus(){
+		Calendar cal=Calendar.getInstance();
+		int dayOfWeek=cal.get(Calendar.DAY_OF_WEEK)-1;
+		if(dayOfWeek==1){
+			return 0;
+		}else{
+			return 1-dayOfWeek;
+		}
+	}
+	
+	public static Date getEndDayofThisWeek(){
+		int mondayPlus=getMondayPlus();
+		GregorianCalendar currentDate=new GregorianCalendar();
+		currentDate.add(GregorianCalendar.DATE, mondayPlus+6);
+		return currentDate.getTime();
+	}
+	
+	public static Date getFirstDayofThisMonth(){
+		Calendar cal=Calendar.getInstance();
+		cal.set(Calendar.DATE,1);
+		Date today=cal.getTime();
+		return today;
+	}
+	
+	public static Date getEndDayofThisMonth(){
+		Calendar cal=Calendar.getInstance();
+		cal.set(Calendar.DATE, 1);
+		cal.add(Calendar.MONTH, 1);
+		cal.add(Calendar.DATE, -1);
+		Date today=cal.getTime();
+		return today;
+	}
+	
+	public static Date getNextDayTime(){
+		Calendar cal=Calendar.getInstance();
+		cal.add(Calendar.DATE, 1);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0); 
+		Date nextDay=cal.getTime();
+		return nextDay;
 	}
 
 }

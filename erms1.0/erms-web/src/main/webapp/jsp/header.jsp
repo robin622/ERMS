@@ -6,11 +6,13 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery.ptTimeSelect.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/ui.theme.css" />
 
-<script language="javascript" src="${pageContext.request.contextPath}/js/height.js"></script>
-<script language="javascript" src="${pageContext.request.contextPath}/js/timezone.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/height.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/timezone.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.ptTimeSelect.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/datapicker.js" ></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/highcharts.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/tab.js"></script>
 	<div id=head_main>
 		<div id="showmessage" style="width:50px;float:left;margin-left:200px;margin-top:40px;"></div> 	
 		<c:if test="${not empty user}">

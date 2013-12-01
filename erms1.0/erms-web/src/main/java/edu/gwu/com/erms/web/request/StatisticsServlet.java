@@ -47,6 +47,15 @@ public class StatisticsServlet extends HttpServlet {
 
 		String[] types = { "day", "week", "month" };
 		JSONObject joReturn = new JSONObject();
+		
+		for(int i=0;i<types.length;i++)
+		{
+		    try {
+				joReturn.put(types[i], service.statisticsCount(types[i]));
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}	
+		}
 
 		
 //		joReturn.put("groups", groups);

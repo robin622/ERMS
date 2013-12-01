@@ -71,6 +71,18 @@ public class UserDAOImpl implements UserDAO{
 		return b;
 	}
 	
+	//check whether user exists or not
+		public String checkUserNameByEmail(String email) {
+			DBCollection table=getTable();
+			DBObject query = new QueryBuilder().put("email").is(email).get();
+			DBCursor cur = table.find(query);
+			if(cur.hasNext()){
+				DBObject obj=cur.next();
+				return ((User) Util.converter(obj,User.class)).getName();
+			}
+			return null;
+		}
+	
 	public List<User> listUser() {
 		List<User> users=new ArrayList<User>();
 		DBCollection table=getTable();

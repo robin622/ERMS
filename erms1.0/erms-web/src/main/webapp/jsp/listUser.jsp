@@ -5,11 +5,9 @@
 	<head>
 		<title>User List</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css"
-			href="${pageContext.request.contextPath}/css/style.css">
 	</head>
 	<script language="javascript" src="${pageContext.request.contextPath}/js/height.js"></script>
-	<body onload = "javascript:updateDisplaySize()">
+	<body>
 	<jsp:include page="header.jsp" />
 		<table id="mainTableInThisPage" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" height="60">
 			<tr valign="top">
