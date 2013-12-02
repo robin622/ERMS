@@ -132,4 +132,17 @@ public class RequestDAOImpl implements RequestDAO{
 		}
 		return request;
 	}
+	public List<Request> listOtherRequests(String email, String name) {
+		List<Request> requests=new ArrayList<Request>();
+		DBCollection table=getTable();
+		DBObject query=new QueryBuilder().put("status").notEquals(0).put("owner").notEquals(email)
+				.put("creator").notEquals(name).put("isPublic").is(1).get();
+		DBCursor cursor=table.find(query);
+		while(cursor.hasNext()){
+			DBObject dbo=cursor.next();
+			Request request=(Request)Util.converter(dbo,Request.class);
+			requests.add(request);
+		}
+		return requests;
+	}
 }

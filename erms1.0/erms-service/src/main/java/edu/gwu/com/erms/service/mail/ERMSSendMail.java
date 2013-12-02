@@ -23,9 +23,15 @@ public class ERMSSendMail {
 		addPlainDetails(sb, request);
 		addPlainRegards(sb);
 		try {
-			Mail.sendMail(SMTPSERVERADDRESS, user.getEmail(), user.getName(),
+			if("update".equalsIgnoreCase(status)){
+				Mail.sendMail(SMTPSERVERADDRESS, user.getEmail(), user.getName(),
+						request.getCreator(), request.getForward(), subject,
+						sb.toString());
+			}else{
+				Mail.sendMail(SMTPSERVERADDRESS, user.getEmail(), user.getName(),
 					request.getOwner(), request.getForward(), subject,
 					sb.toString());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

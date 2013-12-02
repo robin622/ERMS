@@ -1,6 +1,7 @@
 package edu.gwu.com.erms.web.request;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -69,8 +70,11 @@ public class UpdateRequestServlet extends HttpServlet {
 		log.setTime(Double.parseDouble(hour));
 		log.setRequestId(requestId);
 		Log relog=service.updateRequest(log, Integer.parseInt(status),user);
+		PrintWriter pw=response.getWriter();
 		if(relog!=null){
-			
+			pw.println("<script>parent.document.getElementById('updaterequest').style.display='none';alert('add success!');parent.document.getElementById('updaterequest').src='';parent.location.href=parent.location.href;</script>");
+		}else{
+			pw.println("<script>alert('add failure, please try again later!');parent.document.getElementById('updaterequest').style.display='none';</script>");
 		}
 	}
 

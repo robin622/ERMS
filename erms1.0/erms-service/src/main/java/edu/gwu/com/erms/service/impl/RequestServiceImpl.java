@@ -61,7 +61,10 @@ public class RequestServiceImpl implements RequestService{
 		Log relog=requestLogDAO.insertRequestLog(log);
 		//2, update status of request
 		Request request=requestDAO.updateRequestStatus(log.getRequestId(), status);
+		//get email from username
+		String email=userDAO.getEmail(request.getCreator());
 		//3, send email
+		request.setCreator(email);
 		mailer.sendEmail(request,user,"update",log);
 		return relog;
 	}
@@ -134,6 +137,10 @@ public class RequestServiceImpl implements RequestService{
 			}
 		}
 		return sb.toString();
+	}
+
+	public List<Request> listOtherRequests(User user) {
+		return requestDAO.listOtherRequests(user.getEmail(),user.getName());
 	}
 	
 	

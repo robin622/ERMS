@@ -12,4 +12,5 @@ public interface RequestDAO {
 	public List<Request> listRequestsByCondition(String condition, Object value);
 	public Request listRequestById(String id);
 	public Request updateRequestStatus(String requestiId,int status);
+	public List<Request> listOtherRequests(String email, String name);
 }

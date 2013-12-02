@@ -38,8 +38,15 @@ public class UserDAOImpl implements UserDAO{
 		DBObject query = new QueryBuilder().put("email").is(user.getEmail()).get();
 		DBCursor cur0 = table.find(query);
 		if(cur0.hasNext()){
-			DBObject obj=cur0.next();
-			return (User) Util.converter(obj,User.class);
+			cur0.next();
+			return new User();
+		}
+		//username should be unique
+		DBObject query1 = new QueryBuilder().put("name").is(user.getName()).get();
+		DBCursor cur1 = table.find(query);
+		if(cur1.hasNext()){
+			cur1.next();
+			return new User();
 		}
 		BasicDBObject document = new BasicDBObject();
 		document.put("name", user.getName());
@@ -112,6 +119,16 @@ public class UserDAOImpl implements UserDAO{
 			return false;
 		}
 		return true;
+	}
+	public String getEmail(String owner) {
+		DBCollection table=getTable();
+		DBObject query = new QueryBuilder().put("name").is(owner).get();
+		DBCursor cur = table.find(query);
+		if(cur.hasNext()){
+			DBObject obj=cur.next();
+			return ((User) Util.converter(obj,User.class)).getEmail();
+		}
+		return null;
 	}
 	
 //	private User converter(DBObject object){

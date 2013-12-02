@@ -33,6 +33,9 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(null!=request.getSession().getAttribute("message")){
+			request.getSession().removeAttribute("message");
+		}
 		String loginName=request.getParameter("loginName");
 		String loginPassword=request.getParameter("loginPassword");
 		String identity=request.getParameter("role");

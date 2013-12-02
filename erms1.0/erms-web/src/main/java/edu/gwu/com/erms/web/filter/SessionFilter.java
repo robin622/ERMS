@@ -1,4 +1,5 @@
 package edu.gwu.com.erms.web.filter;
+
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -13,29 +14,29 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.gwu.com.erms.bean.User;
 
-@WebFilter(urlPatterns = { "/AddRequestServlet", "/AddUserServlet", "/DeleteUserServlet",
-		"/ListRequestServlet", "/ListUserServlet","/UpdateRequestServlet","/ShowRequestLogServlet"})
+@WebFilter(urlPatterns = { "/AddRequestServlet", "/AddUserServlet",
+		"/DeleteUserServlet", "/ListRequestServlet", "/ListUserServlet",
+		"/UpdateRequestServlet", "/ShowRequestLogServlet" })
 public class SessionFilter implements Filter {
 
-    public void init(FilterConfig config) throws ServletException {
-    }
+	public void init(FilterConfig config) throws ServletException {
+	}
 
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
-            ServletException {
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse rsp = (HttpServletResponse) response;
-        User user = (User) req.getSession().getAttribute("user");
-        if (user == null) {
-            if ("".equals(user)) {
-                rsp.sendRedirect("/");
-                return;
-            }
-        }
-        chain.doFilter(req, response);
-    }
+	public void doFilter(ServletRequest request, ServletResponse response,
+			FilterChain chain) throws IOException, ServletException {
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse rsp = (HttpServletResponse) response;
+		User user = (User) req.getSession().getAttribute("user");
+		if (user == null || "".equals(user)) {
+			req.getSession().setAttribute("message","Session is overdue");
+			rsp.sendRedirect(req.getContextPath());
+			return;
+		}
+		chain.doFilter(req, response);
+	}
 
-    public void destroy() {
+	public void destroy() {
 
-    }
+	}
 
 }

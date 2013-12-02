@@ -4,6 +4,9 @@
 <html>
 	<head>
 		<title>Request Modification</title>
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" type="text/css"
 			href="${pageContext.request.contextPath}/css/style.css">
@@ -17,17 +20,16 @@
 					spendtime.focus();
 					return false;
 				}
-				cancel();
 				return true;
 			}
 			function cancel()
 			{
-				parent.document.getElementById("dw").style.display="none";
+				parent.document.getElementById("updaterequest").style.display="none";
 			}
 		</script>
 	</head>
 	 <body style="background-color:#F0F7FF;border:1px solid #448ACF;">
-	  	<form action="${pageContext.request.contextPath}/UpdateRequestServlet" method="post" style="margin:15px 5px;">
+	  	<form action="${pageContext.request.contextPath}/UpdateRequestServlet" method="get" style="margin:15px 5px;">
 	  		<table>
 	  			<tr>
 	  				<td>Spend Time：</td>

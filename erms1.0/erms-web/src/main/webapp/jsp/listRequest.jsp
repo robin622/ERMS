@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 	<head>
 		<title>Request List</title>
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	</head>
-	<script language="javascript" src="${pageContext.request.contextPath}/js/height.js"></script>
 	<script type="text/javascript">
 			function mouseCoords(event){  
 			    if(event.pageX || event.pageY){  
@@ -37,7 +39,7 @@
 				}
 			}
 		</script>
-	<body onload = "javascript:updateDisplaySize()">
+	<body>
 	<div id="dw">
 		<iframe id="updaterequest"  src="" width="400px" height="170px" frameborder="0" style="display:none;border:1px solid #448ACF;"scrolling="no"></iframe>
 	</div>
@@ -56,9 +58,17 @@
 						<th>name</th>
 						<th>Content</th>
 						<th>Owner</th>
+						<th>Creator</th>
 						<th>Create date</th>
 						<th>Due Date</th>
-						<th>action</th>
+						<c:choose> 
+							<c:when test="${empty who or who eq 'others'}">
+							</c:when>
+							<c:otherwise> 
+							<th>Action</th>	
+							</c:otherwise>
+						</c:choose>
+						
 					</tr>
 				</thead>
 				<tbody>	
@@ -67,23 +77,26 @@
 						<td>${request.name }</td>
 						<td >${request.content }</td>
 						<td >${request.owner}</td>
+						<td>${request.creator}</td>
 						<td ><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${request.createtime}" /></td>
 						<td ><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${request.endtime}" /></td>
-						<td>
 						<c:if test="${who eq 'tome'}">
+							<td>
 							<c:if test="${request.status eq 2 or request.status eq 1}">
 								<a href="javascript:void(0);" onclick="Wopen('${request._id}',event);">update</a> 
 							</c:if>
 							<c:if test="${request.status eq 3}">
 								<a href="${pageContext.request.contextPath}/ShowRequestLogServlet?requestId=${request._id}" target="_blank">details</a> 
 							</c:if>
+							</td>
 						</c:if>
 						<c:if test="${who eq 'fromme'}">
-						<a href="${pageContext.request.contextPath}/DeleteRequestServlet?requestId=${request._id}" onclick="return confirm('Are you sure to delete the request?');">delete</a>
+							<td>
+								<a href="${pageContext.request.contextPath}/DeleteRequestServlet?requestId=${request._id}" onclick="return confirm('Are you sure to delete the request?');">delete</a>
+							</td>
 						</c:if>
-						<c:if test="${who eq 'others'}">
+						<c:if test="${empty who or who eq 'others'}">
 						</c:if>
-						</td>
 					</tr>
 				</c:forEach>
 				</tbody>					

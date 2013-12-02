@@ -10,4 +10,5 @@ public interface UserDAO {
 	public List<User> listUser();
 	public boolean deleteUser(String userId);
 	public String checkUserNameByEmail(String email);
+	public String getEmail(String owner);
 }

@@ -46,8 +46,8 @@ public class AddUserServlet extends HttpServlet {
 			request.setAttribute("message","System error, please try again later");
 			request.getRequestDispatcher("/jsp/addUser.jsp")
 			.forward(request, response);
-		}else if(u.get_id()!=user.get_id()){
-			request.setAttribute("message","Email is occupied, please change to another email");
+		}else if(u.get_id()==null){
+			request.setAttribute("message","Email or Username is occupied, please change to another one");
 			request.getRequestDispatcher("/jsp/addUser.jsp")
 			.forward(request, response);
 		}else{

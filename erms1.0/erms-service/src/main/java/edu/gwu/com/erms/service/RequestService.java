@@ -15,4 +15,5 @@ public interface RequestService {
 	public Log updateRequest(Log log,int status,User user);
 	public List<Log> listRequestlogs(String requestId);
 	public JSONObject statisticsCount(String string);
+	public List<Request> listOtherRequests(User user);
 }

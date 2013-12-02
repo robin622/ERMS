@@ -40,6 +40,9 @@ public class ListRequestServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Pragma","No-cache");
+		response.setHeader("Cache-Control","no-cache");
+		response.setDateHeader("Expires", 0); 
 		List<Request> list= null;
 		User user=(User) request.getSession().getAttribute("user");
 		String who=request.getParameter("who");
@@ -48,7 +51,7 @@ public class ListRequestServlet extends HttpServlet {
 		}else if("fromme".equalsIgnoreCase(who)){
 			list=service.listRequestsByCondition("creator",user.getName());
 		}else if("others".equalsIgnoreCase(who)){
-			
+			list=service.listOtherRequests(user);
 		}else{
 			list=service.listRequests();
 		}
