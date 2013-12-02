@@ -30,28 +30,6 @@ public class DateUtil
 		return cal.getTime();
 	}
 	
-	/**
-	 * utc
-	 */
-	public static Date getUTCTime(){
-		Calendar calendar = Calendar.getInstance();  
-		TimeZone tztz = TimeZone.getTimeZone("GMT+8");         
-		calendar.setTimeZone(tztz); 
-		return calendar.getTime();
-	}
-	
-	/**
-	 * change to local UTC time
-	 */
-	public static Date changeToUTCTime(Date date){
-		final Calendar cal=Calendar.getInstance();
-		cal.setTime(date);
-		final int zoneOffset=cal.get(Calendar.ZONE_OFFSET);
-		final int dstOffset=cal.get(Calendar.DST_OFFSET);
-		cal.add(Calendar.MILLISECOND, -(zoneOffset+dstOffset));
-		return cal.getTime();
-	}
-	
 	public static final Date addHours(Date date, int hours) {
 		if (date == null) {
 			return null;
